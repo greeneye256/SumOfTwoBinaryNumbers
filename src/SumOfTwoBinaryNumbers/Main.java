@@ -3,19 +3,23 @@ package SumOfTwoBinaryNumbers;
 public class Main {
 
     public static void main(String[] args) {
-        long numar1 =11L;
-        long numar2 =101101L;
+        long numar1 =10L;
+        long numar2 =101L;
         long tempNumber;
         long sumOfNumbers=0;
         Utils fun = new Utils();
+        //aflu care numar e mai mare dintre cele doua si le inversez daca al doilea e mai mare ca sa pot trece for-ul prin lungimea cea mai mare
         if (fun.countLengthOfPositiveInteger(numar2)>fun.countLengthOfPositiveInteger(numar1)){
             tempNumber=numar1;
             numar1 = numar2;
             numar2 = tempNumber;
         }
-        int lenght = fun.countLengthOfPositiveInteger(numar1);
+        // creez variabila length ca sa ma folosesc de ea in for
+        int length = fun.countLengthOfPositiveInteger(numar1);
+        // creez variabila remain pentru a ma ajuta in cazul in care cifrele adunate depasesc unu
         int remain = 0;
-        for (int i = 1; i <= lenght ; i++) {
+        // prin for se trece pe toata lungimea numarului mai mare ca lungime si adun rezultatul la sumOfNumbers in functie de conditiile puse in if-uri. Se poate cred face mai simplu de inteles intr-un switch
+        for (int i = 1; i <= length+1 ; i++) {
             if (fun.iDigitOfPositiveNumber(numar1,i)+fun.iDigitOfPositiveNumber(numar2,i)+remain==2){
                 sumOfNumbers+=0;
                 remain=1;
@@ -33,9 +37,6 @@ public class Main {
                     }
                     remain=0;
                 }
-        }
-        if (remain==1){
-            sumOfNumbers+=fun.xPowY(10,lenght);
         }
         System.out.println(sumOfNumbers);
     }
